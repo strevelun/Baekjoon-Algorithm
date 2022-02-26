@@ -1,0 +1,38 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <iostream>
+
+using namespace std;
+
+int n, m;
+
+int arr[8] = { 0 }; 
+bool visited[8] = { 0 };
+
+void Func(int c)
+{
+	if (c == m)
+	{
+		for (int i = 0; i < m; i++)
+			printf("%d ", arr[i]);
+		puts("");
+	} 
+	else
+	{
+		for (int i = 1; i <= n; i++)
+		{
+			if (!visited[i]) {
+				arr[c] = i;
+				visited[i] = true;
+				Func(c + 1); // 빠져나왔다는건 한 줄 끝났다는 것
+				visited[i] = false;
+			}
+		}
+	}
+}
+
+int main()
+{
+	scanf("%d %d", &n, &m);
+	Func(0);
+}
